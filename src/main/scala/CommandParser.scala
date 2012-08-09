@@ -1,6 +1,17 @@
-
 class CommandParser {
   def parseInput(input: String): Set[ServerCommand] = {
+    val index = input.indexOf('|')
+    if (index > 0) {
+      val split = input.split('|')
+      split.map {
+        parseCommand(_)
+      }.toSet
+    }
+    else
+      Set(parseCommand(input))
+  }
+
+  private def parseCommand(input: String): ServerCommand = {
     val parenLocation = input.indexOf("(")
     val commandString = input.substring(0, parenLocation)
 
@@ -12,19 +23,20 @@ class CommandParser {
     var round = 0
     var energy = 0
 
-    args.map { arg =>
-      val (a, v) = arg.splitAt(arg.indexOf("=") + 1)
-      a match {
-        case "name=" => name = v
-        case "apocalypse=" => apocalypse = v.toInt
-        case "round=" => round = v.toInt
-        case "energy=" => energy = v.toInt
-      }
+    args.map {
+      arg =>
+        val (a, v) = arg.splitAt(arg.indexOf("=") + 1)
+        a match {
+          case "name=" => name = v
+          case "apocalypse=" => apocalypse = v.toInt
+          case "round=" => round = v.toInt
+          case "energy=" => energy = v.toInt
+        }
     }
 
-    Set(commandString match {
+    commandString match {
       case "Welcome" => Welcome(name, apocalypse, round)
       case "Goodbye" => Goodbye(energy)
-    })
+    }
   }
 }
