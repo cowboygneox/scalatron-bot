@@ -66,6 +66,11 @@ class CommandParserTest extends Specification {
       parser.encodeOutput(Set(setCommand)) must beEqualTo("Set(user1=v1,user2=v2,user3=5:3:2)")
     }
 
+    "Encode a simple Spawn command" in {
+      val spawn = Spawn(Direction(1,2), "unit1", 100)
+      parser.encodeOutput(Set(spawn)) must beEqualTo("Spawn(direction=1:2,name=unit1,energy=100")
+    }
+
     "Encode the Spawn command" in {
       val spawn = Spawn(Direction(1,2), "unit1", 100, Some(Map("user1" -> "value1", "key" -> "value")))
       parser.encodeOutput(Set(spawn)) must beEqualTo("Spawn(direction=1:2,name=unit1,energy=100,user1=value1,key=value")

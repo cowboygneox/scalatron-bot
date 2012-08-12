@@ -18,7 +18,7 @@ class CommandParser {
         case Explode(size) => "Explode(size=%d)".format(size)
         case SetProperties(userProperties) => "Set(%s)".format(userProperties.map { a => "%s=%s".format(a._1, a._2) }.mkString(","))
         case Spawn(direction, name, energy, properties) => {
-          "Spawn(direction=%s:%s,name=%s,energy=%s,%s".format(direction.x, direction.y, name, energy, properties.map { props => props.map { a => "%s=%s".format(a._1, a._2) }.mkString(",")}.get)
+          "Spawn(direction=%s:%s,name=%s,energy=%s%s".format(direction.x, direction.y, name, energy, properties.map { props => props.map { a => "%s=%s".format(a._1, a._2) }.mkString(",")}.map("," + _).getOrElse(""))
         }
       }
     }.mkString(",")
