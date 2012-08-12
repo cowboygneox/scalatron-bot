@@ -61,6 +61,11 @@ class CommandParserTest extends Specification {
       parser.encodeOutput(Set(explode)) must beEqualTo("Explode(size=5)")
     }
 
+    "Encode the Set command" in {
+      val setCommand = SetProperties(Map("user1" -> "v1", "user2" -> "v2", "user3" -> "5:3:2"))
+      parser.encodeOutput(Set(setCommand)) must beEqualTo("Set(user1=v1,user2=v2,user3=5:3:2)")
+    }
+
     "Encode multiple commands" in {
       val move = Move(Direction(-1,1))
       val explode = Explode(5)

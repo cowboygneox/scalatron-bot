@@ -16,6 +16,7 @@ class CommandParser {
       clientCommand match {
         case Move(direction) => "Move(direction=%d:%d)".format(direction.x, direction.y)
         case Explode(size) => "Explode(size=%d)".format(size)
+        case SetProperties(userProperties) => "Set(%s)".format(userProperties.map { a => "%s=%s".format(a._1, a._2) }.mkString(","))
       }
     }.mkString(",")
   }
