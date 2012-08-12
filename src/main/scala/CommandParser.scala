@@ -44,9 +44,11 @@ class CommandParser {
         }
     }
 
+    val map = extractMap(argString)
+
     commandString match {
-      case "Welcome" => Welcome(name, apocalypse, round)
-      case "Goodbye" => Goodbye(energy)
+      case "Welcome" => Welcome(map("name"), map("apocalypse").toInt, map("round").toInt)
+      case "Goodbye" => Goodbye(map("energy").toInt)
       case "React" => React(generation, name, time, view, energy, master, collision)
     }
   }
