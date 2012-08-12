@@ -3,7 +3,7 @@ import org.specs2.mutable.Specification
 class CommandParserTest extends Specification {
   val parser = new CommandParser
 
-  "A Command Parser" should {
+  "The Command Parser" should {
     "Parse the Welcome command" in {
       val string = "Welcome(name=testBot,apocalypse=1005,round=3)"
       parser.parseInput(string) must beEqualTo(Set(Welcome("testBot", 1005, 3)))
@@ -47,6 +47,13 @@ class CommandParserTest extends Specification {
     "Extract the map" in {
       val answer = parser.extractMap("key1=value1,key2=value2,key3=4:5,key4=value4")
       answer must beEqualTo(Map("key1" -> "value1", "key2" -> "value2", "key3" -> "4:5", "key4" -> "value4"))
+    }
+  }
+
+  "The Command Encoder" should {
+    "Encode the move command" in {
+      val move = Move(Direction(-1,1))
+      parser.encodeOutput(Set(move)) must beEqualTo("Move(direction=-1:1)")
     }
   }
 }

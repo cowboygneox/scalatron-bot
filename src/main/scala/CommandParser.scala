@@ -11,6 +11,14 @@ class CommandParser {
       Set(parseCommand(input))
   }
 
+  def encodeOutput(clientCommands: Set[ClientCommand]) = {
+    clientCommands.map { clientCommand =>
+      clientCommand match {
+        case Move(direction) => "Move(direction=%d:%d)".format(direction.x, direction.y)
+      }
+    }.mkString
+  }
+
   private def parseCommand(input: String): ServerCommand = {
     val parenLocation = input.indexOf("(")
     val commandString = input.substring(0, parenLocation)
