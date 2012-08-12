@@ -51,6 +51,15 @@ class CommandParser {
     }
   }
 
+  def extractMap(keyValueString: String): Map[String, String] = {
+    val regex = """(\w+)=(\w+)""".r
+    regex.findAllIn(keyValueString).map { m =>
+      m match {
+        case regex(key, value) => Map(key -> value)
+      }
+    }.foldLeft(Map[String, String]())((a, b) => a ++ b)
+  }
+
   private def parseDirection(string: String): Direction = {
     val strings = string.split(':')
     Direction(strings(0).toInt, strings(1).toInt)

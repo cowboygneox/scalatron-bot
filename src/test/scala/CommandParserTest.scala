@@ -38,5 +38,10 @@ class CommandParserTest extends Specification {
       val string = "Welcome(name=testBot,apocalypse=1005,round=3)|Goodbye(energy=45)"
       parser.parseInput(string) must beEqualTo(Set(Goodbye(45), Welcome("testBot", 1005, 3)))
     }
+
+    "Extract the map" in {
+      val answer = parser.extractMap("key1=value1,key2=value2")
+      answer must beEqualTo(Map("key1" -> "value1", "key2" -> "value2"))
+    }
   }
 }
