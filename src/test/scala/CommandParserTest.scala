@@ -91,6 +91,11 @@ class CommandParserTest extends Specification {
       parser.encodeOutput(Set(log)) must beEqualTo("Log(text=Error - Bad stuff happened)")
     }
 
+    "Encode the MarkCell command" in {
+      val markCell = MarkCell(Direction(-2, 4), "#ff8800")
+      parser.encodeOutput(Set(markCell)) must beEqualTo("MarkCell(position=-2:4,color=#ff8800")
+    }
+
     "Encode multiple commands" in {
       val move = Move(Direction(-1,1))
       val explode = Explode(5)

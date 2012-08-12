@@ -17,3 +17,4 @@ sealed trait NeutralCommand extends ClientCommand
 case class Say(text: String) extends NeutralCommand
 case class Status(text: String) extends NeutralCommand
 case class Log(text: String) extends NeutralCommand
+case class MarkCell(position: Direction, color: String) extends NeutralCommand
