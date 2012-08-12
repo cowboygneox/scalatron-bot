@@ -86,6 +86,11 @@ class CommandParserTest extends Specification {
       parser.encodeOutput(Set(status)) must beEqualTo("Status(text=I'm Thinking...)")
     }
 
+    "Encode the Log command" in {
+      val log = Log("Error - Bad stuff happened")
+      parser.encodeOutput(Set(log)) must beEqualTo("Log(text=Error - Bad stuff happened)")
+    }
+
     "Encode multiple commands" in {
       val move = Move(Direction(-1,1))
       val explode = Explode(5)

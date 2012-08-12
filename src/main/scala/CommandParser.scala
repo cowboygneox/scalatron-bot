@@ -22,6 +22,7 @@ class CommandParser {
         }
         case Say(text) => "Say(text=%s)".format(text)
         case Status(text) => "Status(text=%s)".format(text)
+        case Log(text) => "Log(text=%s)".format(text)
       }
     }.mkString(",")
   }
