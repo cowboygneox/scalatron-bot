@@ -31,7 +31,7 @@ class CommandParserTest extends Specification {
 
     "Parse the React command without a master or collision param" in {
       val string = "React(generation=10,name=Bill,time=50,view=View,energy=100)"
-      parser.parseInput(string) must beEqualTo(Set(React(10, "Bill", 50, "View", 100, None, None)))
+      parser.parseInput(string) must beEqualTo(Set(React(10, "Bill", 50, "View", 100)))
     }
 
     "Parse multiple server commands" in {
