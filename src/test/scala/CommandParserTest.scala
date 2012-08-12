@@ -76,6 +76,11 @@ class CommandParserTest extends Specification {
       parser.encodeOutput(Set(spawn)) must beEqualTo("Spawn(direction=1:2,name=unit1,energy=100,user1=value1,key=value")
     }
 
+    "Encode the Say command" in {
+      val say = Say("Text Here")
+      parser.encodeOutput(Set(say)) must beEqualTo("Say(text=Text Here)")
+    }
+
     "Encode multiple commands" in {
       val move = Move(Direction(-1,1))
       val explode = Explode(5)
