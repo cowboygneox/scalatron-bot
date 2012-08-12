@@ -96,6 +96,11 @@ class CommandParserTest extends Specification {
       parser.encodeOutput(Set(markCell)) must beEqualTo("MarkCell(position=-2:4,color=#ff8800")
     }
 
+    "Encode the DrawLine command" in {
+      val drawLine = DrawLine(Direction(2, -2), Direction(3, 3), "#ff88aa")
+      parser.encodeOutput(Set(drawLine)) must beEqualTo("DrawLine(from=2:-2,to=3:3,color=#ff88aa")
+    }
+
     "Encode multiple commands" in {
       val move = Move(Direction(-1,1))
       val explode = Explode(5)
