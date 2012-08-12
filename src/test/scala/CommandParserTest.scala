@@ -55,5 +55,10 @@ class CommandParserTest extends Specification {
       val move = Move(Direction(-1,1))
       parser.encodeOutput(Set(move)) must beEqualTo("Move(direction=-1:1)")
     }
+
+    "Encode the Explode command" in {
+      val explode = Explode(5)
+      parser.encodeOutput(Set(explode)) must beEqualTo("Explode(size=5)")
+    }
   }
 }

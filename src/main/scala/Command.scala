@@ -9,3 +9,4 @@ case class React(generation: Int, name: String, time: Int, view: String, energy:
 
 sealed trait ClientCommand extends Command
 case class Move(direction: Direction) extends ClientCommand
+case class Explode(size: Int) extends ClientCommand
