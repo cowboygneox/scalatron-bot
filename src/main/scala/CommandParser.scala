@@ -17,7 +17,7 @@ class CommandParser {
         case Move(direction) => "Move(direction=%d:%d)".format(direction.x, direction.y)
         case Explode(size) => "Explode(size=%d)".format(size)
       }
-    }.mkString
+    }.mkString(",")
   }
 
   private def parseCommand(input: String): ServerCommand = {
