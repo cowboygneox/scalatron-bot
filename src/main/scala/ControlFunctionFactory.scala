@@ -1,5 +1,11 @@
 class ControlFunctionFactory {
+  val parser = new CommandParser
+
   def create = { input: String =>
-    "Move(direction=1:0)"
+    parser.encodeOutput(handleCommands(parser.parseInput(input)))
+  }
+
+  def handleCommands(commands: Set[ServerCommand]): Set[ClientCommand] = {
+    null
   }
 }
