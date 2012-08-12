@@ -34,6 +34,11 @@ class CommandParserTest extends Specification {
       parser.parseInput(string) must beEqualTo(Set(React(10, "Bill", 50, "View", 100)))
     }
 
+    "Parse the React command with user defined properties" in {
+      val string = "React(generation=10,name=Bill,time=50,view=View,energy=100,userProperty1=aValue,userProperty2=anotherValue)"
+      parser.parseInput(string) must beEqualTo(Set(React(10, "Bill", 50, "View", 100, userProperties = Some(Map("userProperty1" -> "aValue", "userProperty2" -> "anotherValue")))))
+    }
+
     "Parse multiple server commands" in {
       val string = "Welcome(name=testBot,apocalypse=1005,round=3)|Goodbye(energy=45)|React(generation=10,name=Bill,time=50,view=View,energy=100)"
       parser.parseInput(string) must beEqualTo(Set(Goodbye(45), Welcome("testBot", 1005, 3), React(10, "Bill", 50, "View", 100)))

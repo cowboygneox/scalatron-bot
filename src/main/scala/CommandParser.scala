@@ -21,13 +21,23 @@ class CommandParser {
     commandString match {
       case "Welcome" => Welcome(map("name"), map("apocalypse").toInt, map("round").toInt)
       case "Goodbye" => Goodbye(map("energy").toInt)
-      case "React" => React(map("generation").toInt,
-                            map("name"),
-                            map("time").toInt,
-                            map("view"),
-                            map("energy").toInt,
-                            parseDirection(map.get("master")),
-                            parseDirection(map.get("collision")))
+      case "React" => {
+        val remainingMap = map - ("generation", "name", "time", "view", "energy", "master", "collision")
+        val userProperties = remainingMap match {
+          case _ if (remainingMap.isEmpty) => None
+          case _ => Some(remainingMap)
+        }
+
+        React(map("generation").toInt,
+          map("name"),
+          map("time").toInt,
+          map("view"),
+          map("energy").toInt,
+          parseDirection(map.get("master")),
+          parseDirection(map.get("collision")),
+          userProperties
+        )
+      }
     }
   }
 
