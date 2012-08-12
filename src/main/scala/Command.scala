@@ -11,3 +11,4 @@ sealed trait ClientCommand extends Command
 case class Move(direction: Direction) extends ClientCommand
 case class Explode(size: Int) extends ClientCommand
 case class SetProperties(userProperties: Map[String, String]) extends ClientCommand
+case class Spawn(direction: Direction, name: String, energy: Int, userProperties: Option[Map[String, String]] = None) extends ClientCommand
