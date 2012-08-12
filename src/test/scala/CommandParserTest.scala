@@ -81,6 +81,11 @@ class CommandParserTest extends Specification {
       parser.encodeOutput(Set(say)) must beEqualTo("Say(text=Text Here)")
     }
 
+    "Encode the Status command" in {
+      val status = Status("I'm Thinking...")
+      parser.encodeOutput(Set(status)) must beEqualTo("Status(text=I'm Thinking...)")
+    }
+
     "Encode multiple commands" in {
       val move = Move(Direction(-1,1))
       val explode = Explode(5)

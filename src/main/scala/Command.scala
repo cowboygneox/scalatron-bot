@@ -15,3 +15,4 @@ case class Spawn(direction: Direction, name: String, energy: Int, userProperties
 
 sealed trait NeutralCommand extends ClientCommand
 case class Say(text: String) extends NeutralCommand
+case class Status(text: String) extends NeutralCommand

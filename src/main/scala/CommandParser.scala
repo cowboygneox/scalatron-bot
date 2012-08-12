@@ -21,6 +21,7 @@ class CommandParser {
           "Spawn(direction=%s:%s,name=%s,energy=%s%s".format(direction.x, direction.y, name, energy, properties.map { props => props.map { a => "%s=%s".format(a._1, a._2) }.mkString(",")}.map("," + _).getOrElse(""))
         }
         case Say(text) => "Say(text=%s)".format(text)
+        case Status(text) => "Status(text=%s)".format(text)
       }
     }.mkString(",")
   }
