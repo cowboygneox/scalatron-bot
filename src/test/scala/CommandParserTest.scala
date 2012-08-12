@@ -35,8 +35,8 @@ class CommandParserTest extends Specification {
     }
 
     "Parse multiple server commands" in {
-      val string = "Welcome(name=testBot,apocalypse=1005,round=3)|Goodbye(energy=45)"
-      parser.parseInput(string) must beEqualTo(Set(Goodbye(45), Welcome("testBot", 1005, 3)))
+      val string = "Welcome(name=testBot,apocalypse=1005,round=3)|Goodbye(energy=45)|React(generation=10,name=Bill,time=50,view=View,energy=100)"
+      parser.parseInput(string) must beEqualTo(Set(Goodbye(45), Welcome("testBot", 1005, 3), React(10, "Bill", 50, "View", 100)))
     }
 
     "Extract the map" in {
